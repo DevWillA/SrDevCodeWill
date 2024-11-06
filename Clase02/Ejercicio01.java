@@ -3,8 +3,6 @@
 ¿Cuál es el resultado correcto de la operación? ¿1 ó 9?
 Explique por que la otra calculadora genera un resultado diferente. */
 
-package Clase02;
-
 public class Ejercicio01 {
 
     public static void main(String[] args) {
