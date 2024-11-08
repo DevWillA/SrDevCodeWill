@@ -27,18 +27,35 @@ public class Ejercicio06 {
 
         switch (opcion) {
             case 1:
-                System.out.println("Ingrese la cantidad de metros a convertir a kilometros");
+                System.out.println("Ingrese la cantidad de Metros a convertir a Kilometros");
                 double metros = sc.nextDouble();
                 metrosAKilometros(metros);
                 break;
 
-                case 2:
-                System.out.println("Ingrese la cantidad de kilometros a convertir a metros");
+            case 2:
+                System.out.println("Ingrese la cantidad de Kilometros a convertir a Metros");
                 double kilometros = sc.nextDouble();
                 kilometrosAMetros(kilometros);
                 break;
 
+            case 3:
+                System.out.println("Ingrese la cantidad de Gramos a convertir a Kilogramos");
+                double gramos = sc.nextDouble();
+                gramosAKilogramos(gramos);
+                break;
+
+            case 4:
+                System.out.println("Ingrese la cantidad de Kilogramos a convertir a Gramos");
+                double kilogramos = sc.nextDouble();
+                kilogramosAGramos(kilogramos);
+                break;
+
+            case 5: 
+            System.out.println("Gracias por utilizar el conversor de medidas");
+            break;
+
             default:
+            System.out.println("Opción no válida");
                 break;
         }
 
@@ -54,5 +71,14 @@ public class Ejercicio06 {
         System.out.println("Son: " + metros + " Metros");
     }
 
+    public static void gramosAKilogramos(double gramos) {
+        double kilogramos = gramos / 1000;
+        System.out.println("Son: " + kilogramos + " Kilogramos");
+    }
+
+    public static void kilogramosAGramos(double kilogramos) {
+        double gramos = kilogramos * 1000;
+        System.out.println("Son: " + gramos + " Gramos");
+    }
 
 }
