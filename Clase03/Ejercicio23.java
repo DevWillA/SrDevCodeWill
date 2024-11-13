@@ -26,10 +26,8 @@ public class Ejercicio23 {
 
         System.out.println("Ingrese el valor con el cual haremos el diamante, debe ser positivo e impar");
         int num = entrada.nextInt();
-        String cadena = "";
 
         int div = Math.abs(num / 2);
-        int nEspacios;
 
         System.out.println(div);
 

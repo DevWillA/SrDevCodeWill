@@ -8,7 +8,6 @@ Output : 3
 El tercer hermano es el el que llegara a la reunión tarde. */
 
 import java.util.Scanner;
-import java.math.*;
 
 public class Ejercicio13 {
     public static void main(String[] args) {

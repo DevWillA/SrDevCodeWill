@@ -1,7 +1,6 @@
 /*Realice un programa en el que ingrese un número y muestre el cubo. Repita el proceso hasta que se introduzca un valor negativo. */
 
 import java.util.Scanner;
-import java.math.*;
 
 public class Ejercicio14 {
     public static void main(String[] args) {

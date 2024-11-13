@@ -13,7 +13,7 @@ public class Ejercicio16 {
         int numNegativos = 0;
 
         while (num < 0) {
-            numNegativos = ++numNegativos;
+            ++numNegativos;
             System.out.println("Ingrese otro numero");
             num = entrada.nextInt();
         }

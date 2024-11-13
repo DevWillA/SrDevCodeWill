@@ -2,7 +2,6 @@
  */
 
 import java.util.Scanner;
-import java.math.*;
 
 public class Ejercicio02 {
     public static void main(String[] args) {

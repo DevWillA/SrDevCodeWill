@@ -6,7 +6,6 @@ Output : 13100
 Tenga en cuenta que la respuesta es un texto. Los números los puede concatenar. */
 
 import java.util.Scanner;
-import java.math.*;
 
 public class Ejercicio11 {
     public static void main(String[] args) {
@@ -26,7 +25,7 @@ public class Ejercicio11 {
         int medio = (num1 + num2 + num3) - (mayor + menor);
 
         System.out.println("Los valore sque ingreso ordenados en forma ascendente son: "+menor+""+""+medio+""+""+mayor);
-
+        entrada.close();
     }
 
 

@@ -37,7 +37,7 @@ public class Ejercicio05 {
         int num3 = sc.nextInt();
 
         System.out.println("El promedio de los tres nuemros es: "+calcularPromedio(num1, num2, num3));
-        
+        sc.close();
     }
 
     public static double calcularPromedio(int num1,int num2,int num3){

@@ -20,6 +20,8 @@ public class Ejercicio07 {
             
         }else {System.out.println("Los tres numero no pueden formar un triangulo");}
 
+        entrada.close();
+
     }
     
 }

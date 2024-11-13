@@ -15,7 +15,6 @@ Mostrar Resultados:
 Después de calcular el área, mostrar el resultado al usuario en la consola. */
 
 import java.util.Scanner;
-import java.math.*;
 
 public class Ejercicio08 {
     public static void main(String[] args) {

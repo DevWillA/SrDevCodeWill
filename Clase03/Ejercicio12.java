@@ -16,14 +16,14 @@ import java.util.Scanner;
 public class Ejercicio12 {
     public static void main(String[] args) {
 
-        Scanner entrada = new Scanner(System.io);
+        Scanner entrada = new Scanner(System.in);
 
         System.out.println("Ingrese el peso de la sandia en KG");
         double pesoKg = Double.parseDouble(entrada.nextLine());
 
         double mod = pesoKg % 2;
 
-        if (md == 0) {
+        if (mod == 0) {
             System.out.println("Si, ya que el peso de la sandia es " + pesoKg + " Kg");
         } else {
             System.out.println("No, ya que el peso de la sandia es " + pesoKg + " Kg");

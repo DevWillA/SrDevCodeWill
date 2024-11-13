@@ -6,7 +6,6 @@ Calcule la media de los números negativos.
 Calcule la media de los números positivos.
 Cuente la cantidad de ceros. */
 
-import java.math.*;
 
 public class Ejercicio18 {
     public static void main(String[] args) {

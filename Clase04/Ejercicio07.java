@@ -18,7 +18,6 @@ Mostrar Resultados:
 Después de calcular la potencia, mostrar el resultado al usuario en la consola. */
 
 import java.util.Scanner;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ejercicio07 {
     public static void main(String[] args) {

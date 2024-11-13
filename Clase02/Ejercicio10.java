@@ -19,7 +19,7 @@ public class Ejercicio10 {
 
         System.out.println("La media aritmetica de los tres numeros ingresados es: "+mediaaritmetica);
 
-        
+        entrada.close();
     }
     
 }
