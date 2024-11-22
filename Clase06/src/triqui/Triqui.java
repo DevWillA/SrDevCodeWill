@@ -1,5 +1,6 @@
 package triqui;
 
+import triqui.Triqui;
 import java.util.Scanner;
 
 public class Triqui {
@@ -13,42 +14,66 @@ public class Triqui {
         // Si no lo hizo Preguntar si quiere seguir jugando
 
         var sc = new Scanner(System.in);
-
+        var isFinish = false;
         var player = 'X';
         var board = inicializeBoard();
-        showBoard(board);
-
-        System.out.printf("Jugador %c ingresa tu movimeinto: %n", player);
-        System.out.print("Fila: ");
-        var row = sc.nextInt();
-        System.out.print("Columna: ");
-        var column = sc.nextInt();
-
-        if (makeMove(board, row, column, player)) {
+        do {
             showBoard(board);
-        } else
 
-        {
-            System.out.println("Movimiento invalidao, intenta de nuevo.");
-        }
+            System.out.printf("Jugador %c ingresa tu movimeinto: %n", player);
+            System.out.print("Fila (1-3): ");
+            var row = sc.nextInt() - 1;
+            System.out.print("Columna (1-3): ");
+            var column = sc.nextInt() - 1;
 
+            if (makeMove(board, row, column, player)) {
+                showBoard(board);
+                if (checkWinner(board, player)) {
+                    System.out.printf("Jugador %c Gano! %n", player);
+                    isFinish = true;
+                } else {
+
+                    player = player == 'X' ? 'O' : 'X';
+
+            
+                }
+
+            } else
+
+            {
+                System.out.println("Movimiento invalidao, intenta de nuevo.");
+            }
+        } while (!isFinish);
 
         sc.close();
     }
 
-    private static boolean checkWinner(char[][] board, char player){
-    
-        for(var row : board){
-            if(row[0] == player && row[1] == player && row[2] == player){
+    private static boolean checkWinner(char[][] board, char player) {
+
+        for (var row : board) {
+            if (row[0] == player && row[1] == player && row[2] == player) {
                 return true;
             }
 
         }
 
-        for(int i = 0;i < board[0].lengt; i++){
+        for (int i = 0; i < board[0].length; i++) {
 
-            if(board[0][i] == player && board[0][i] == player && board[0][i] == player)
+            if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
+
+                return true;
+            }
         }
+        if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
+
+            return true;
+        }
+        if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+
+            return true;
+        }
+
+        return false; // Añadido retorno por defecto si no hay ganador
 
     }
 
