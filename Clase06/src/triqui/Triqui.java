@@ -14,8 +14,9 @@ public class Triqui {
         // Si no lo hizo Preguntar si quiere seguir jugando
 
         var sc = new Scanner(System.in);
-        var isFinish = false;
         var player = 'X';
+        var isFinish = false;
+        var counter = 0;
         var board = inicializeBoard();
         do {
             showBoard(board);
@@ -27,6 +28,7 @@ public class Triqui {
             var column = sc.nextInt() - 1;
 
             if (makeMove(board, row, column, player)) {
+                counter++;
                 showBoard(board);
                 if (checkWinner(board, player)) {
                     System.out.printf("Jugador %c Gano! %n", player);
@@ -35,7 +37,6 @@ public class Triqui {
 
                     player = player == 'X' ? 'O' : 'X';
 
-            
                 }
 
             } else
@@ -43,10 +44,18 @@ public class Triqui {
             {
                 System.out.println("Movimiento invalidao, intenta de nuevo.");
             }
+
+            if (counter == 9) {
+                showBoard(board);
+                System.out.println("Empate");
+                isFinish = true;
+            }
         } while (!isFinish);
 
         sc.close();
     }
+
+
 
     private static boolean checkWinner(char[][] board, char player) {
 
