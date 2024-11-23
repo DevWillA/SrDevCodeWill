@@ -123,6 +123,14 @@ public class SimuladorInterplanetario {
                 }
             }
 
+            if (etapa == 1) {
+
+                System.out.println("Salimos de la Tierra");
+                System.out.println("La nave se encuentra en optimas condiciones");
+                System.out.println("Precione enter para continuar");
+                sc.nextLine();  
+            }
+
             System.out.println("""
                                                _______________
                           -----------------   |        ___    \\
