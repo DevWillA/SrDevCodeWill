@@ -16,6 +16,21 @@ La matriz rotada debe ser:
 public class Ejercicio02 {
     public static void main(String[] args) {
         
+
+    
+          
+                System.out.println("Este es el primer mensaje.");
+        
+                try {
+                    // Espera de 5 segundos (5000 milisegundos)
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        
+                System.out.println("Este es el mensaje que aparece después de 5 segundos.");
+    
+        
     }
     
 }
