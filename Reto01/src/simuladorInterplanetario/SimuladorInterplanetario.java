@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class SimuladorInterplanetario {
 
-    private static double fuelModificado;
-    private static double oxigenoModificado;
+    private static double fuelReerva = 0;
+    private static double oxigenoReserva = 0;
+    private static double fuelCosumido = 0;
+    private static double oxigenoCosumido = 0;
     private static double fuel;
     private static double oxigeno;
     private static boolean aumentoRecursos;
@@ -19,32 +21,42 @@ public class SimuladorInterplanetario {
         int nave;
         int eventosSubitos;
 
-        System.out.println("Hola Bienvenido");
-        System.out.println("¿Cuál es tu nombre?");
-        String nombre = sc.nextLine();
-        System.out.println("Hola " + nombre + " Bienvenido al Simulador de Vuelo interplanetario");
+        // Inicimos el programa
+        System.out.println("Hola Bienvenido al Simulador de Vuelo interplanetario");
         do {
             System.out.println(menuInicial());
 
             destino = sc.nextInt();
-            sc.nextLine(); // Limpia el buffer.
+            sc.nextLine(); // Limpia el buffer
 
             if (destino < 1 || destino > 7) {
                 System.out.println("Destino no válido");
             }
         } while (destino < 1 || destino > 7);
 
+        mensajesStop1();
+        // Despues de seleccionar el destino, nos pide el nave
         do {
-            System.out.println(menuNaves(destino));
+            String[] secuencia = menuNaves(destino);
+
+            for (String mensaje : secuencia) {
+                System.out.println(mensaje);
+                mensajesStop1();
+            }
+
             nave = sc.nextInt();
-            sc.nextLine(); // Limpia el buffer.w
+            sc.nextLine(); // Limpia el buffer
 
             if (nave < 1 || nave > 3) {
                 System.out.println("Nave no válida");
             }
         } while (nave < 1 || nave > 3);
 
+        mensajesStop1();
+
         int cantidadTripulantes;
+
+        // Despues de seleccionar el nave, nos pide la cantidad de personas
 
         System.out.println("Vamos a " + planetSelect(destino) + " con una nave " + naveSelect(nave));
         do {
@@ -55,19 +67,27 @@ public class SimuladorInterplanetario {
             }
         } while (cantidadTripulantes < 1 || cantidadTripulantes > capacidadNave(nave));
 
+        mensajesStop1();
+
+        // Despues de seleccionar la cantidad de personas, calculamos los eventos
+        // aleatorios
+
         eventosSubitos = calcularEventosAleatorios(distanceKM(destino));
         int eventosCompletados = 0;
 
+        // Mostramos el tiempo y distancia
+
         System.out.println(calculateDistanceAndTime(destino, nave));
+
+        // Asignamos los recursos iniciales
 
         fuel = calculateFuel(destino, nave);
         oxigeno = calculateOxigen(destino, nave, cantidadTripulantes);
 
-        fuelModificado = fuel;
-        oxigenoModificado = oxigeno;
-
         int opcion;
         aumentoRecursos = false;
+
+        // Ingresamos al segundo menu
 
         do {
             System.out.println(menuSecond());
@@ -82,14 +102,29 @@ public class SimuladorInterplanetario {
                 case 1:
                     if (!aumentoRecursos) {
                         System.out
-                                .println("La cantidad de combustible necesario es: " + fuelModificado + " Kilogramos");
+                                .println("La cantidad de combustible necesario es: " + fuel + " Kilogramos");
+
+                        mensajesStop1();
+
                         System.out.println("La cantidad de oxigeno necesario para " + cantidadTripulantes
-                                + " personas es: " + oxigenoModificado + " Kilogramos");
-                        System.out.println("Es recomendable modificar los recursos de la nave para evitar imprevistos");
+                                + " personas es: " + oxigeno + " Kilogramos");
+
+                        mensajesStop1();
+
+                        System.out.println("Es recomendable aumentar los recursos de la nave para evitar imprevistos");
+
+                        mensajesStop1();
+
                     } else {
-                        System.out.println("La cantidad de combustible es: " + fuelModificado + " Kilogramos");
+                        System.out.println("La cantidad de combustible es: " + fuel
+                                + " Kilogramos y la reserva de combustible es: " + fuelReerva + " Kilogramos");
+                        mensajesStop1();
+
                         System.out.println("La cantidad de oxigeno necesario para " + cantidadTripulantes
-                                + " personas es: " + oxigenoModificado + " Kilogramos");
+                                + " personas es: " + oxigeno + " Kilogramos y la reserva de oxigeno es: "
+                                + oxigenoReserva + " Kilogramos");
+                        mensajesStop1();
+
                     }
                     break;
                 case 2:
@@ -104,11 +139,7 @@ public class SimuladorInterplanetario {
 
                     for (String mensaje : secuencia) {
                         System.out.println(mensaje);
-                        try {
-                            Thread.sleep(2000); // Pausa de 2 segundo
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                        }
+                        mensajesStop1();
                     }
                     break;
                 default:
@@ -118,14 +149,37 @@ public class SimuladorInterplanetario {
 
         } while (opcion != 4);
 
+        // Cuando inciamos el despegue de la nave, empezamos a contar las etapas
 
         for (int etapa = 1; etapa <= 10; etapa++) {
 
             boolean etapaValida = consultarEtapa(etapa, eventosCompletados, eventosSubitos);
 
+            if (fuelCosumido > fuel) {
+
+                mensajeMuerto();
+                break;
+
+            }
+
+            if (oxigenoCosumido > oxigeno) {
+
+                mensajeMuerto();
+                break;
+
+            }
+
+            // Verifica si los recursos son suficientes para continuar con la etapa
+            if (!validarRecursos((fuel - fuelCosumido), (oxigeno - oxigenoCosumido))) {
+                break; // Si los recursos no son suficientes, termina el viaje
+            }
+
             if (!etapaValida) {
+
+                // Validamos al azar si se presentara un evento subito
                 int randomValue = (Math.random() < 0.5) ? 1 : 2;
 
+                // Validamos al azar si el evento es falla del sistema o asteroides
                 if (randomValue == 1) {
                     eventoSubitoFallaSistema(sc);
                 } else {
@@ -133,74 +187,152 @@ public class SimuladorInterplanetario {
                 }
             }
 
+            // Mostramos el mensaje de salida de la nave
             if (etapa == 1) {
 
                 System.out.println("Salimos de la Tierra");
-                System.out.println("La nave se encuentra en optimas condiciones");
                 System.out.println("Precione enter para continuar");
                 sc.nextLine();
             }
 
-            // Verifica si los recursos son suficientes para continuar con la etapa
-            if (!validarRecursos(fuelModificado, oxigenoModificado)) {
-                break; // Si los recursos no son suficientes, termina el viaje
-            }
+            naveVolando();
 
-            System.out.println("""
-                                             _______________
-                        -----------------   |        ___    \\
-                        ----------------    |       |   |     \\
-                        ----------------    |       |___|     /
-                        -----------------   |_______________/
-                    """);
+            // Validamos si es necesario las reservas de combustible y oxígeno
+            consumirReservaCombustible();
+            consumirReservaOxigeno();
+
+            mensajesStop1();
 
             System.out.println("El proceso del viaje es " + etapa + "0%");
+
+            mensajesStop1();
+
+            // Validamos si la nave tiene una perdida de combustible
             if (naveFallandoGasolina) {
                 // Si la nave está fallando, se pierde un 5% de combustible.
-                fuelModificado = fuel - (fuel * etapa / 10) - (fuel * 0.05);
+                fuelCosumido += (fuel / 10) + (fuel * 0.05);
                 System.out.println("La nave está fallando y esta perdiendo un 5% de combustible.");
+                mensajesStop1();
             } else {
-                fuelModificado = fuel - (fuel * etapa / 10);
+                fuelCosumido += (fuel / 10);
             }
 
+            // Validamos si la nave tiene una perdida de oxígeno
             if (naveFallandoOxigeno) {
                 // Si la nave está fallando, se pierde un 5% de oxígeno.
-                oxigenoModificado = oxigeno - (oxigeno * etapa / 10) - (oxigeno * 0.05);
+                oxigenoCosumido += (oxigeno / 10) + (oxigeno * 0.05);
                 System.out.println("La nave está fallando y esta perdiendo un 5% de oxigeno.");
-
+                mensajesStop1();
             } else {
-                oxigenoModificado = oxigeno - (oxigeno * etapa / 10);
+                oxigenoCosumido += (oxigeno / 10);
             }
-            double porcentajeCombustible = (fuelModificado / fuel) * 100;
-            double porcentajeOxigeno = (oxigenoModificado / oxigeno) * 100;
 
-            System.out.println("El combustible consumido es " + (fuel * etapa / 10) + " kilogramos. Aun nos quedan "
-                    + porcentajeCombustible + "% de combustible.");
-            System.out.println("El oxigeno consumido es " + (oxigeno * etapa / 10) + " kilogramos. Aun nos quedan "
-                    + porcentajeOxigeno + "% de oxigeno.");
+            // Calculamos el porcentaje de combustible y oxígeno que quedan
+            double porcentajeCombustible = ((fuel - fuelCosumido) / fuel) * 100;
+            double porcentajeOxigeno = ((oxigeno - oxigenoCosumido) / oxigeno) * 100;
 
-            System.out.println("Precione enter para continuar");
-            sc.nextLine();
+            if (fuelCosumido > fuel) {
+                mensajeMuerto();
+                break;
+            } else {
+                System.out.println("El combustible consumido es " + fuelCosumido + " kilogramos. Aun nos quedan "
+                        + porcentajeCombustible + "% de combustible.");
+            }
+            mensajesStop1();
+            if (oxigenoCosumido > oxigeno) {
+                mensajeMuerto();
+                break;
+            } else {
+                System.out.println("El oxigeno consumido es " + oxigenoCosumido + " kilogramos. Aun nos quedan "
+                        + porcentajeOxigeno + "% de oxigeno.");
+            }
+            mensajesStop1();
+            // System.out.println("Precione enter para continuar");
 
         }
 
-        if (!validarRecursos(fuelModificado, oxigenoModificado)) {
+        // Validamos si comcluyo el proceso con exito
+        if (!validarRecursos((fuel - fuelCosumido), (oxigeno - oxigenoCosumido))) {
             System.out.println("Mision abortada, no hay suficiente combustible o oxígeno para continuar");
         } else {
             System.out.println("Proceso completado, llegamos a " + planetSelect(destino));
+            mensajeLlegaste();
         }
         sc.close();
     }
 
-    // Esta función se encarga de validar si los recursos (combustible y oxígeno)
-    // son suficientes para la siguiente etapa.
-    private static boolean validarRecursos(double fuelModificado, double oxigenoModificado) {
-        if (fuelModificado <= 0) {
+    private static void mensajeLlegaste() {
+        System.out.println("""
+                  L       L        EEEEE  GGGG   AAAAA  SSSSS  TTTTT  EEEEE
+                  L       L        E     G       A     A S        T    E
+                  L       L        EEEE  G  GG   AAAAAAA SSSSS    T    EEEE
+                  L       L        E     G   G   A     A     S    T    E
+                  LLLLL   LLLLL    EEEEE GGGG    A     A SSSSS    T    EEEEE
+                """);
+    }
+
+    private static void naveVolando() {
+        System.out.println("""
+                                         _______________
+                    -----------------   |        ___    \\
+                    ----------------    |       |   |     \\
+                    ----------------    |       |___|     /
+                    -----------------   |_______________/
+                """);
+    }
+
+    private static void mensajeMuerto() {
+        System.out.println("""
+                  M   M  U   U  EEEEE  RRRR    TTTTT   OOO
+                  MM MM  U   U  E      R   R    T    O   O
+                  M M M  U   U  EEEE   RRRR     T    O   O
+                  M   M  U   U  E      R  R     T    O   O
+                  M   M  UUUUU  EEEEE  R   R    T     OOO
+                """);
+    }
+
+    // Funcion que retrasa los mensajes de salida 1 segundo
+    private static void mensajesStop1() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Funcion que valida si la nave tiene reservas de combustible y las consume de
+    // ser necesario
+    private static void consumirReservaCombustible() {
+        if ((fuel - fuelCosumido) <= fuelReerva && fuelReerva > 0) {
+
+            System.out.println("¡Atención! El combustible se esta agotando, se pasaran las reservas a la nave.");
+            fuel += fuelReerva;
+            fuelReerva = 0;
+
+        }
+    }
+
+    // Funcion que valida si la nave tiene reservas de oxígeno y las consume de ser
+    // necesario
+    private static void consumirReservaOxigeno() {
+        if ((oxigeno - oxigenoCosumido) <= oxigenoReserva && oxigenoReserva > 0) {
+
+            System.out.println("¡Atención! El oxígeno se esta agotando, se pasaran las reservas a la nave.");
+            oxigeno += oxigenoReserva;
+            oxigenoReserva = 0;
+
+        }
+    }
+
+    // Función se encarga de validar si los recursos (combustible y oxígeno) son
+    // suficientes para la siguiente etapa.
+    private static boolean validarRecursos(double fuelRestante, double oxigenoRestante) {
+        if (fuelRestante <= 0) {
             System.out.println("¡Alerta! El combustible se ha agotado antes de tiempo. ¡La nave se detendrá!");
             return false; // Retorna false si el combustible se ha agotado
         }
 
-        if (oxigenoModificado <= 0) {
+        if (oxigenoRestante <= 0) {
             System.out.println("¡Alerta! El oxígeno se ha agotado antes de tiempo. ¡La nave se detendrá!");
             return false; // Retorna false si el oxígeno se ha agotado
         }
@@ -208,6 +340,7 @@ public class SimuladorInterplanetario {
         return true; // Si los recursos están bien, continúa
     }
 
+    // Función que consulta si una etapa es válida o no
     private static boolean consultarEtapa(int etapa, int eventosCompletados, int eventosSubitos) {
 
         if (eventosCompletados < eventosSubitos) {
@@ -217,6 +350,7 @@ public class SimuladorInterplanetario {
         }
     }
 
+    // Función que calcula el número de eventos aleatorios basados en la distancia
     private static int calcularEventosAleatorios(double distancia) {
         // A mayor distancia, mayor probabilidad de eventos
         double probabilidadEvento = Math.min(1, distancia / 5000.0);
@@ -233,6 +367,7 @@ public class SimuladorInterplanetario {
         return Math.min(eventos, 7);
     }
 
+    // Funcion que determina la velocidad de una nave
     private static int velocidadNave(int nave) {
         return switch (nave) {
             case 1 -> 100000;
@@ -242,6 +377,7 @@ public class SimuladorInterplanetario {
         };
     }
 
+    // Función que determina la capacidad de una nave
     private static int capacidadNave(int nave) {
         return switch (nave) {
             case 1 -> 3;
@@ -251,6 +387,7 @@ public class SimuladorInterplanetario {
         };
     }
 
+    // Funcion que genera un evento subito: Falla del sistema
     private static void eventoSubitoFallaSistema(Scanner sc) {
 
         int opcion;
@@ -293,32 +430,29 @@ public class SimuladorInterplanetario {
             System.out.println("Tiempo de reparación: " + tiempoReparacion + " minutos");
 
             // Durante la reparación, se pierde un porcentaje de oxígeno.
-            oxigenoExtra = (oxigeno * porcentajeOxigenoPerdido); // 5% de oxígeno durante la reparación.
-            oxigenoModificado -= oxigenoExtra; // Reducimos el oxígeno disponible.
+            oxigenoExtra = ((oxigeno - oxigenoCosumido) * porcentajeOxigenoPerdido); // 5% de oxígeno durante la
+                                                                                     // reparación.
+            oxigenoCosumido += oxigenoExtra; // Reducimos el oxígeno disponible.
 
-            System.out.println("Oxígeno consumido durante la reparación: " + oxigenoExtra );
-            System.out.println("Oxígeno restante: " + oxigenoModificado + "%");
+            System.out.println("Oxígeno consumido durante la reparación: " + oxigenoExtra);
+            System.out.println("Oxígeno restante: " + (oxigeno - oxigenoCosumido));
+            System.out.println("Oxigeno consumido: " + oxigenoCosumido);
         } else {
             System.out.println("Nave fallando");
             // La nave pierde un 5% de oxígeno por el fallo.
             oxigenoExtra = (oxigeno * porcentajeOxigenoPerdido); // 5% de oxígeno perdido por fallo.
-            oxigenoModificado -= oxigenoExtra; // Reducimos el oxígeno disponible.
+            oxigenoCosumido += oxigenoExtra; // Reducimos el oxígeno disponible.
 
-            System.out.println("Oxígeno consumido debido al fallo: " + oxigenoExtra );
-            System.out.println("Oxígeno restante: " + oxigenoModificado);
+            System.out.println("Oxígeno consumido debido al fallo: " + oxigenoExtra);
+            System.out.println("Oxígeno restante: " + (oxigeno - oxigenoCosumido));
+            System.out.println("Oxigeno consumido: " + oxigenoCosumido);
 
-            // Si la nave sigue fallando, pierde otro 5% de oxígeno.
-            oxigenoExtra = (oxigeno * porcentajeOxigenoPerdido); // Otro 5% de oxígeno.
-            oxigenoModificado -= oxigenoExtra; // Reducimos el oxígeno disponible.
-
-            System.out.println("Oxígeno adicional consumido por el fallo continuo: " + oxigenoExtra);
-            System.out.println("Oxígeno restante: " + oxigenoModificado);
             naveFallandoOxigeno = true; // Marcamos que la nave está fallando.
         }
 
-        // Si el oxígeno se agota o está en niveles bajos, puedes incluir una condición
-        // para manejar la emergencia.
-        if (oxigenoModificado <= 0) {
+        consumirReservaOxigeno();
+
+        if ((oxigeno - oxigenoCosumido) <= 0) {
             System.out.println("¡Atención! El oxígeno se ha agotado. La nave está en peligro crítico.");
             // Aquí podrías finalizar la misión o ejecutar alguna lógica de emergencia.
         }
@@ -354,9 +488,9 @@ public class SimuladorInterplanetario {
 
         if (opcion == 1) {
             // Si se elige atravesar asteroides, se gasta gasolina.
-            gasolinaExtra = (Math.random() * 50); // El gasto de gasolina por atravesar los asteroides.
+            gasolinaExtra = fuel * 0.05; // El gasto de gasolina por atravesar los asteroides.
             System.out.println("El evento de asteroides ha consumido: " + gasolinaExtra + " Kilogramos de gasolina.");
-            fuelModificado -= gasolinaExtra; // Reducimos el combustible.
+            fuelCosumido += gasolinaExtra; // Reducimos el combustible.
         } else if (opcion == 2) {
             // Si se decide atravesar los asteroides, también se puede generar un fallo.
             System.out.println("Atravesando Asteroides");
@@ -364,6 +498,10 @@ public class SimuladorInterplanetario {
 
             if (azar) {
                 System.out.println("Atravesando sin problemas");
+                gasolinaExtra = fuel * 0.05; // El gasto de gasolina por atravesar los asteroides.
+                System.out
+                        .println("El evento de asteroides ha consumido: " + gasolinaExtra + " Kilogramos de gasolina.");
+                fuelCosumido += gasolinaExtra; // Reducimos el combustible.
             } else {
                 System.out.println("Atravesando con problemas");
                 do {
@@ -383,41 +521,42 @@ public class SimuladorInterplanetario {
                     // Si se repara, se pierde menos gasolina que si la nave sigue fallando.
                     System.out.println("Fallo reparado");
                     System.out.println("La reparación retrasó la nave, pero no pierde más gasolina.");
-                    gasolinaExtra = (Math.random() * 30); // Se pierde menos gasolina en reparación.
+                    gasolinaExtra = fuel * 0.05; // Se pierde menos gasolina en reparación.
                     System.out.println("Gasolina consumida en la reparación: " + gasolinaExtra + " Kilogramos.");
-                    fuelModificado -= gasolinaExtra; // Reducimos el combustible.
+                    fuelCosumido += gasolinaExtra; // Reducimos el combustible.
                 } else {
                     // Si sigue fallando, se pierde un 5% adicional de gasolina.
                     System.out.println("Nave fallando");
-                    gasolinaExtra = (fuelModificado * porcentajePerdida); // Se pierde un 5% de la gasolina actual.
+                    gasolinaExtra = ((fuel - fuelCosumido) * porcentajePerdida); // Se pierde un 5% de la gasolina
+                                                                                 // actual.
                     System.out.println("Gasolina perdida por fallo: " + gasolinaExtra + " Kilogramos.");
-                    fuelModificado -= gasolinaExtra; // Reducimos el combustible.
+                    fuelCosumido += gasolinaExtra; // Reducimos el combustible.
                     naveFallandoGasolina = true; // Marcamos que la nave está fallando.
                 }
             }
         }
 
         // Mostrar el resultado final de la gasolina.
-        System.out.println("El combustible restante es: " + fuel + " Kilogramos.");
+        System.out.println("El combustible restante es: " + (fuel - fuelCosumido) + " Kilogramos.");
+        System.out.println("Combustible consumido: " + fuelCosumido);
 
-        // Si el combustible se agota o está en niveles bajos, puedes incluir una condición
-        // para manejar la emergencia.
-        if (fuelModificado <= 0) {
+        consumirReservaCombustible();
+
+        if (fuel - fuelCosumido <= 0) {
             System.out.println("¡Atención! El combustible se ha agotado. La nave está en peligro crítico.");
-            // Aquí podrías finalizar la misión o ejecutar alguna lógica de emergencia.
         }
     }
 
-    private static String menuNaves(int destino) {
+    private static String[] menuNaves(int destino) {
 
         System.out.println("Para su viaje a " + planetSelect(destino) + " necesitamos una nave.");
 
-        return """
-                ¿Qué tipo de nave desea?
-                1. Nave: Star Voyager | Capacidad: 3 personas | Velocidad: 100000 km/h
-                2. Nave: Cosmo Cruiser | Capacidad: 2 personas | Velocidad: 89000 km/h
-                3. Nave: Galaxy Explorer | Capacidad: 4 personas | Velocidad: 80000 km/h
-                        """;
+        return new String[] {
+                "¿Qué tipo de nave desea?",
+                "1. Nave: Star Voyager | Capacidad: 3 personas | Velocidad: 100000 km/h",
+                "2. Nave: Cosmo Cruiser | Capacidad: 2 personas | Velocidad: 89000 km/h",
+                "3. Nave: Galaxy Explorer | Capacidad: 4 personas | Velocidad: 80000 km/h"
+        };
 
     }
 
@@ -497,7 +636,7 @@ public class SimuladorInterplanetario {
         if (aumentoRecursos) {
 
             System.out.println(
-                    "Recuerde que ya anteriormente hizo un aumento de recursos, por lo tanto se tendran en cuenta los recursos base");
+                    "Recuerde que ya lleva reservas de combustible y oxígeno, por lo tanto se tendran en cuenta los recursos base para las nuevas reservas");
         }
         System.out.println(
                 "En cantidad de %, ¿cuánto quiere aumentar el combustible? (Máximo puede aumentar en un 30%)");
@@ -507,12 +646,14 @@ public class SimuladorInterplanetario {
         double aumentoO = sc.nextDouble();
 
         if (aumentoC <= 30 && aumentoO <= 30) {
-            fuelModificado = fuel + (fuel * aumentoC / 100);
-            oxigenoModificado = oxigeno + (oxigeno * aumentoO / 100);
+            fuelReerva = (fuel * aumentoC / 100);
+            oxigenoReserva = (oxigeno * aumentoO / 100);
 
-            System.out.println("La nueva cantidad de combustible es: " + fuelModificado + " Kilogramos");
-            System.out.println("La nueva cantidad de oxígeno para " + cantidadTripulantes + " personas es: "
-                    + oxigenoModificado + " Kilogramos");
+            System.out.println("La cantidad de combustible es: " + fuel + " Kilogramos"
+                    + " y la reserva de combustible es: " + fuelReerva + " Kilogramos");
+            System.out.println("La cantidad de oxígeno para " + cantidadTripulantes + " personas es: " + oxigeno
+                    + " Kilogramos" + " y la reserva de oxígeno es: " + oxigenoReserva + " Kilogramos");
+
         } else {
             System.out.println("El aumento excede el total máximo");
         }
