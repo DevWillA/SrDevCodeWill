@@ -425,6 +425,7 @@ public class SimuladorInterplanetario {
 
         if (opcion == 1) {
             System.out.println("Fallo reparado");
+            naveFallandoOxigeno = false;
             System.out.println("La reparacion retrazo la nave");
             double tiempoReparacion = (int) (Math.random() * 100);
             System.out.println("Tiempo de reparación: " + tiempoReparacion + " minutos");
@@ -520,6 +521,7 @@ public class SimuladorInterplanetario {
                 if (opcion2 == 1) {
                     // Si se repara, se pierde menos gasolina que si la nave sigue fallando.
                     System.out.println("Fallo reparado");
+                    naveFallandoGasolina = false;
                     System.out.println("La reparación retrasó la nave, pero no pierde más gasolina.");
                     gasolinaExtra = fuel * 0.05; // Se pierde menos gasolina en reparación.
                     System.out.println("Gasolina consumida en la reparación: " + gasolinaExtra + " Kilogramos.");
