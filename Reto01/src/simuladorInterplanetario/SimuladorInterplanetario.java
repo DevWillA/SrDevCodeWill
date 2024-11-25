@@ -14,7 +14,7 @@ public class SimuladorInterplanetario {
     private static boolean naveFallandoGasolina = false;
     private static boolean naveFallandoOxigeno = false;
 
-    public static void main(String[] args) {
+    public static void startGame()  {
         var sc = new Scanner(System.in);
 
         int destino;
@@ -86,7 +86,7 @@ public class SimuladorInterplanetario {
 
         int opcion;
         aumentoRecursos = false;
-a
+
         // Ingresamos al segundo menu
 
         do {
