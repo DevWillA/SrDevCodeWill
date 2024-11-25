@@ -56,7 +56,7 @@ public class SimuladorInterplanetario {
 
         int cantidadTripulantes;
 
-        // Despues de seleccionar el nave, nos pide la cantidad de personas
+        // Despues de seleccionar la nave, nos pide la cantidad de personas
 
         System.out.println("Vamos a " + planetSelect(destino) + " con una nave " + naveSelect(nave));
         do {
@@ -86,7 +86,7 @@ public class SimuladorInterplanetario {
 
         int opcion;
         aumentoRecursos = false;
-
+a
         // Ingresamos al segundo menu
 
         do {
@@ -261,6 +261,7 @@ public class SimuladorInterplanetario {
         sc.close();
     }
 
+    // Retornos de mensajes asccii
     private static void mensajeLlegaste() {
         System.out.println("""
                   L       L        EEEEE  GGGG   AAAAA  SSSSS  TTTTT  EEEEE
@@ -542,6 +543,7 @@ public class SimuladorInterplanetario {
         System.out.println("El combustible restante es: " + (fuel - fuelCosumido) + " Kilogramos.");
         System.out.println("Combustible consumido: " + fuelCosumido);
 
+        // De ser necesario consumimos reservas
         consumirReservaCombustible();
 
         if (fuel - fuelCosumido <= 0) {
@@ -549,6 +551,7 @@ public class SimuladorInterplanetario {
         }
     }
 
+    // Funciones de menus
     private static String[] menuNaves(int destino) {
 
         System.out.println("Para su viaje a " + planetSelect(destino) + " necesitamos una nave.");
@@ -633,6 +636,7 @@ public class SimuladorInterplanetario {
         };
     }
 
+    // Funcion que calcula el aumento de recursos y lo asigna a las reservas
     private static void calculateAumentoRecursos(Scanner sc, int cantidadTripulantes) {
 
         if (aumentoRecursos) {
@@ -661,6 +665,7 @@ public class SimuladorInterplanetario {
         }
     }
 
+    // Funcion que regersa el tiempo de vuelo en Dias
     private static double timeDD(int destino, int nave) {
         double distancia = distanceKM(destino) * 1e6; // Distancia en kilómetros
         double velocidad = velocidadNave(nave); // Velocidad promedio en km/h
@@ -668,6 +673,7 @@ public class SimuladorInterplanetario {
         return tiempoHH / 24; // Convertir a días
     }
 
+    // Funcion que calcula la distancia y el tiempo de viaje al destino
     private static String calculateDistanceAndTime(int destino, int nave) {
         if (distanceKM(destino) == -1) {
             return "Opcion aun no creada en este universo, Destino no válido.";
@@ -679,6 +685,7 @@ public class SimuladorInterplanetario {
                 planetSelect(destino), distanceKM(destino), tiempoMM);
     }
 
+    // Funcion que calcula la gasolina nesesaria para el viaje segun el destino
     private static double calculateFuel(int destino, int nave) {
         if (distanceKM(destino) == -1) {
             return 0.0;
@@ -688,12 +695,19 @@ public class SimuladorInterplanetario {
         double consumoBasePorMillonKM = 500;
         double factorVelocidad = velocidadNave(nave) / 100000.0; // Ajuste basado en velocidad (normalizado con 100,000
                                                                  // km/h)
+        double consumoTotal = consumoBasePorMillonKM * distanciaMillonesKM * factorVelocidad;
 
-        return distanciaMillonesKM * consumoBasePorMillonKM * factorVelocidad;
+        consumoTotal += consumoTotal + 0.1; // Agregamos un 10% para llegar ccon mas base
+
+        return consumoTotal;
     }
 
     private static double calculateOxigen(int destino, int nave, int cantidadTripulantes) {
         // Consumo promedio de oxigeno de una persona 0.84kg
-        return cantidadTripulantes * timeDD(destino, nave) * 24 * 0.84; // Oxígeno en kilogramos considerando horas
+        double consumoTotal = cantidadTripulantes * timeDD(destino, nave) * 24 * 0.84; // Oxígeno en kilogramos
+                                                                                       // considerando horas
+
+        consumoTotal += consumoTotal * 0.1; // Agregamos un 10% para llegar ccon mas base
+        return consumoTotal;
     }
 }
