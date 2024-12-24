@@ -1,4 +1,4 @@
-public class main {
+public class Main{
     public static void main(String[] args) {
         Book libro = new Book();
         Book libro2 = new Book("Cien Años de soledad", "Gabriel Garcia Marquez", 1967, "Narrativa");

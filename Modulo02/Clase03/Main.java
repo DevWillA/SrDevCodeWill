@@ -4,7 +4,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        
+
         List<Vehiculo> vehiculos = new ArrayList<>();
         vehiculos.add(new Carro());
         vehiculos.add(new Avion());
@@ -14,6 +14,11 @@ public class Main {
             vehiculo.moverse();
 
         }
+
+
+        Pato pato = new Pato();
+        pato.nadar();
+        pato.Volador();
 
     }
 
