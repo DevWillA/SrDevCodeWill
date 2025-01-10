@@ -1,7 +1,6 @@
 import Factory.Forma;
 import Factory.FormaFactory;
 import Factory.TipoForma;
-import Singleton.Logger;
 
 public class Main {
 

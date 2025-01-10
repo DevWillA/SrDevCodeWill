@@ -13,6 +13,8 @@ public class Paypal implements MetodoDePago {
 
     @Override
     public String obtenerDetalles() {
+               // TODO Auto-generated method stub
+               throw new UnsupportedOperationException("Unimplemented method 'obtenerDetalles'");
         
     }
 
