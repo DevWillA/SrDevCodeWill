@@ -4,7 +4,8 @@ public class Computador {
     private TarjetaMadre tarjetaMadre;
 
     public Computador() {
-        this.tarjetaMadre = new TarjetaMadre();
+        this.tarjetaMadre = new TarjetaMadre(1000,16,4,8,12);
+        tarjetaMadre.registrarTipoDiscoDuro("SSD");
     }
 
     public void mostrarConfiguracion() {
