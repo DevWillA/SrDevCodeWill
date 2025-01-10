@@ -1,4 +1,4 @@
-package Modulo02.Clase05;
+package Modulo02.Clase05.Composite;
 
 public class Almacenamiento {
 
