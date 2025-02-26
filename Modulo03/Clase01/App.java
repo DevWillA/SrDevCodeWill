@@ -1,28 +1,30 @@
 public package Modulo03.Clase01;
 
+import java.util.Scanner;
+
 class App {
 
-    public static void main(String[] args) throws Exception {
-        var array = new int[5];
-        var num = 5;
+    public static void main(String[] args) {
+            var sc = new Scanner(System.in);
 
-        try {
-            array[num] = 10;
-            System.out.println(array[num]);
+    System.out.println("Bienvenido a la aplicacion, ingrese una cadena y la pasare a mayusculas");
+    var app = new App();
+    var cadena = app.readFromKeyboard(sc);
+    System.out.printf("la cadena en mayusculas es: '%s'%n", cadena.toUpperCase());
 
-            var denominador = 0;
-            array[0] /= denominador;
+    sc.close();
 
-            System.out.println(array[num]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Error: " + e.getMessage());
+    }
+
+    private String readFromKeyboard(Scanner sc)  throws BlankStringException {
+        System.out.println("Ingrese una cadena");
+        var cadena = sc.nextLine();
+        if (cadena.isBlank()) {
+            throw new BlankStringException("La cadena no puede ser vacia");
         }
-        catch (ArithmeticException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+
+        
+        return sc.nextLine();
 
 
         
