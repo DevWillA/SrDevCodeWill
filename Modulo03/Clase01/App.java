@@ -10,15 +10,22 @@ class App {
     public static void main(String[] args) {
         var sc = new Scanner(System.in);
 
-        System.out.println("Bienvenido a la aplicacion, ingrese una cadena y la pasare a mayusculas");
+        System.out.println("Bienvenido a la aplicacion, ingrese un numero para darle su cuadrado");
         var app = new App();
 
         try {
             var cadena = app.readFromKeyboard(sc);
-            System.out.printf("la cadena en mayusculas es: '%s'%n", cadena.toUpperCase());
+            var number = Integer.parseInt(cadena)
+            System.out.println("El cuadroado del numero es: "+ number*number);
+            break;
         } catch (BlankStringException e) {
             System.out.println("Acaba de ocurrir un error " + e.getMessage());
             e.printStackTrace(System.err); // muestra el error
+            System.out.println("Por favor ingrese una cadena valida");
+        } catch (NumberFormatException e) {
+            System.out.println("Ingresaste un numero mal: " + e.getMessage());
+            e.printStackTrace(System.err); // muestra el error
+            System.out.println("Por favor ingrese un numero valido");
         }
         sc.close();
 
