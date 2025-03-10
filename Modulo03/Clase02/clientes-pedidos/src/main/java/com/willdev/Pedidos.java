@@ -29,7 +29,10 @@ public class Pedidos {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Pedidos [cantidad=" + cantidad + ", clienteId=" + clienteId + ", producto=" + producto + "]";
+    }
 
 
 }

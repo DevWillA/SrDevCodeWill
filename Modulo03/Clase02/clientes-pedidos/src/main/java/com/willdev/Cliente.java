@@ -21,7 +21,10 @@ public class Cliente {
         return nombre;
     }
 
-
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", nombre=" + nombre + "]";
+    }
     
 
 }
