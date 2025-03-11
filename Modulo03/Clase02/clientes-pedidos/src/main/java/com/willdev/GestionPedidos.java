@@ -68,7 +68,7 @@ public class GestionPedidos {
             }
 
         }
-        return null;
+        throw new PedidoInvalidoException("El pedido no existe");
 
     }
 }

@@ -62,3 +62,75 @@
 2025-03-11 09:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
 2025-03-11 09:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
 2025-03-11 09:19:33 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:17:52 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:17:52 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:17:52 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:17:52 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:17:52 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:17:52 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:17:52 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:17:52 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:18:23 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:18:23 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:18:23 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:18:23 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:18:24 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:18:24 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:18:24 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:18:24 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:19:05 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:19:05 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:19:05 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:19:05 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:19:05 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:19:05 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:19:05 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:19:05 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:19:33 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:19:33 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:19:33 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:19:33 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:19:33 [main] WARN  com.willdev.Main - Error al buscar el pedido
+com.willdev.PedidoInvalidoException: El pedido no existe
+	at com.willdev.GestionPedidos.buscarPedido(GestionPedidos.java:71) ~[classes/:?]
+	at com.willdev.Main.main(Main.java:39) [classes/:?]
+2025-03-11 10:19:33 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:20:02 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:20:02 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:20:02 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:20:02 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:20:02 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:20:02 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:20:02 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:20:02 [main] WARN  com.willdev.Main - Error al buscar el pedido
+com.willdev.PedidoInvalidoException: El pedido no existe
+	at com.willdev.GestionPedidos.buscarPedido(GestionPedidos.java:71) ~[classes/:?]
+	at com.willdev.Main.main(Main.java:47) [classes/:?]
+2025-03-11 10:20:02 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:20:49 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:20:49 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:20:49 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:20:49 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:20:49 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:20:49 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:20:49 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:20:49 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:24:29 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:24:29 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:24:29 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:24:29 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:24:29 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:24:29 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:24:29 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:24:29 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 10:24:37 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 10:24:37 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 10:24:37 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 10:24:37 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 10:24:37 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 10:24:37 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 10:24:37 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 10:24:37 [main] INFO  com.willdev.Main - Finalizando la aplicacion

@@ -21,6 +21,14 @@ public class Main {
         log.info("Cliente 3 registrado");
 
 
+        try {
+            log.debug("Buscando cliente 1");
+            clientes.buscarCliente("1");
+        } catch (ClienteNoEncontradoException e) {
+            log.warn("Error al buscar el cliente", e);
+            System.err.println("Error al buscar el cliente" +e.getMessage());
+        }
+
         var pedidos = new GestionPedidos(clientes);
         try {
             log.debug("Creando pedido 1");
@@ -33,6 +41,7 @@ public class Main {
             log.warn("Error al gestionar el pedido", e);
             System.err.println("Error al gestionar el pedido" +e.getMessage());
         }
+
 
         System.out.println("Gracias por usar nuestro servicio");
 
