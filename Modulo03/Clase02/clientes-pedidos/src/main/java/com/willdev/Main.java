@@ -1,11 +1,11 @@
 package com.willdev;
 
-import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
     public static void main(String[] args) {
-
-        var log =  LogManager.getLogger(Main.class);
+        Logger log = LoggerFactory.getLogger(Main.class);
 
         log.info("Iniciando la aplicacion");
 
