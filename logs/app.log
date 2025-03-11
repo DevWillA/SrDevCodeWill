@@ -22,3 +22,43 @@
 2025-03-10 17:06:29 [main] DEBUG com.willdev.GestionPedidos - Agregando el pedido: Pedidos [cantidad=1, clienteId=3, producto=Teclado]
 2025-03-10 17:06:29 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
 2025-03-10 17:06:29 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 09:16:49 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 09:16:49 [main] DEBUG com.willdev.Main - Creando clientes 1
+2025-03-11 09:16:49 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 09:16:49 [main] DEBUG com.willdev.Main - Creando clientes 2
+2025-03-11 09:16:49 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 09:16:49 [main] DEBUG com.willdev.Main - Creando clientes 3
+2025-03-11 09:16:49 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Creando GestionPedidos
+2025-03-11 09:16:49 [main] DEBUG com.willdev.Main - Creando pedido 1
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Los parametros son: clienteId=1, producto=Laptop, cantidad=2
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - El cliente del pedido es: Cliente [id=1, nombre=William]
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Agregando el pedido: Pedidos [cantidad=2, clienteId=1, producto=Laptop]
+2025-03-11 09:16:49 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 09:16:49 [main] DEBUG com.willdev.Main - Creando pedido 2
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Los parametros son: clienteId=2, producto=Mouse, cantidad=1
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - El cliente del pedido es: Cliente [id=2, nombre=Yuly]
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Agregando el pedido: Pedidos [cantidad=1, clienteId=2, producto=Mouse]
+2025-03-11 09:16:49 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 09:16:49 [main] DEBUG com.willdev.Main - Creando pedido 3
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Los parametros son: clienteId=3, producto=Teclado, cantidad=1
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - El cliente del pedido es: Cliente [id=3, nombre=Patricia]
+2025-03-11 09:16:49 [main] DEBUG com.willdev.GestionPedidos - Agregando el pedido: Pedidos [cantidad=1, clienteId=3, producto=Teclado]
+2025-03-11 09:16:49 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 09:16:49 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 09:18:24 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 09:18:24 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 09:18:24 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 09:18:24 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 09:18:24 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 09:18:24 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 09:18:24 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 09:18:24 [main] INFO  com.willdev.Main - Finalizando la aplicacion
+2025-03-11 09:19:33 [main] INFO  com.willdev.Main - Iniciando la aplicacion
+2025-03-11 09:19:33 [main] INFO  com.willdev.Main - Cliente 1 registrado
+2025-03-11 09:19:33 [main] INFO  com.willdev.Main - Cliente 2 registrado
+2025-03-11 09:19:33 [main] INFO  com.willdev.Main - Cliente 3 registrado
+2025-03-11 09:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 1 Laptop
+2025-03-11 09:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 2 Mouse
+2025-03-11 09:19:33 [main] INFO  com.willdev.GestionPedidos - Pedido Agregado con exiso 3 Teclado
+2025-03-11 09:19:33 [main] INFO  com.willdev.Main - Finalizando la aplicacion
