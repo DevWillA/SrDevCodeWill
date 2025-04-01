@@ -39,4 +39,12 @@ public class Inventory {
     public Product getProduct(String name) {
         return products.get(name.toUpperCase());
     }
+
+    public double getTotalInventoryValue() {
+        double totalValue = 0.0;
+        for (var product : products.values()) {
+            totalValue += product.getPrice() * product.getQuantity();
+        }
+        return totalValue;
+    }
 }
