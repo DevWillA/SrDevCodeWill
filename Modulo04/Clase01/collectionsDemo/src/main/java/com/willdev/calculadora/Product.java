@@ -46,4 +46,14 @@ public class Product {
                 ", quantity=" + quantity +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Product product = (Product) obj;
+        return Double.compare(product.price, price) == 0 &&
+                quantity == product.quantity &&
+                name.equals(product.name);
+    }
 }
