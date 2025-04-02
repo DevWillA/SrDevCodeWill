@@ -1,7 +1,7 @@
 package com.willdev.collections;
 
 import java.util.LinkedList;
-import java.utils.*;
+import java.util.List;
 
 public class Lists {
 
@@ -28,7 +28,7 @@ public class Lists {
             System.out.println(element);
         }
 
-        var list 2 = new ArrayList();
+        
 
 
 
