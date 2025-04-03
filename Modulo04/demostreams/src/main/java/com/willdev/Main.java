@@ -150,7 +150,6 @@ public class Main {
             System.out.println("Palabras de longitud " + key + ": " + groups.get(key));
 
         }
-
     }
 
     private static void ejercicio03Strems() {
