@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.swing.event.TreeExpansionEvent;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -230,4 +229,35 @@ public class Main {
         r.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed())
                 .forEach(e -> System.out.printf("Producto: %s, cantidad: %,.2f %n", e.getKey(), e.getValue()));
     }
+
+    private static void ejercicio08() {
+
+        var texto = """
+                Dado un párrafo de texto convierte el texto en una lista de palabras y elimina las palabras repetidas.
+                Luego agrupa las palabras por su longitud y muestra cada grupo de palabras junto con la cantidad de palabras en ese grupo.
+                Finalmente encuentra la palabra más larga en el texto y muéstrala por pantalla.
+                """;
+
+        var pu = Stream.of(texto.replaceAll("\n", " ")
+                .replace('.', '\0')
+                .split(" "))
+                .collect(Collectors.toSet());
+
+        var ppl = pu.stream()
+                .collect(Collectors.groupingBy(String::length));
+
+        ppl.forEach(
+                (longitud, palabras) -> System.out.printf("Longitud: %d, Palabras: %d %n", longitud, palabras.size()));
+
+        var pmlo = ppl.entrySet().stream()
+        .sorted(Map.Entry.<Integer, List<String>>comparingByKey())
+        .findFirst();
+
+        if (pmlo.isPresent()) {
+            pmlo.get().getValue().stream().findFirst().ifPresent(System.out::println);
+            
+        }
+        
+    }
+
 }
