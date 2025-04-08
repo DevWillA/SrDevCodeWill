@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.swing.event.TreeExpansionEvent;
@@ -158,7 +160,74 @@ public class Main {
 
         var groups = words.stream().collect(Collectors.groupingBy(String::length));
 
-        groups.forEach((key, wordList) -> System.out.println("Palabras de longitud " + key + ": " + wordList.stream().collect(Collectors.joining(", "))));
+        groups.forEach((key, wordList) -> System.out
+                .println("Palabras de longitud " + key + ": " + wordList.stream().collect(Collectors.joining(", "))));
 
+    }
+
+    private static void ejercicio04() {
+
+        var numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        var promedio = numbers.stream()
+                .collect(Collectors.averagingInt(Integer::intValue));
+
+        System.out.println(promedio);
+
+    }
+
+    private static void ejercicio05() {
+
+        var words = Arrays.asList("Java", "Streams", "are", "poerful");
+
+        var r = words.stream()
+                .collect(Collectors.joining(" "));
+
+        System.out.println(r);
+
+    }
+
+    public static class Venta {
+        private String producto;
+        private int cantidad;
+
+        public Venta(String producto, int cantidad, double precioPorUnidad) {
+            this.producto = producto;
+            this.cantidad = cantidad;
+            this.precioPorUnidad = precioPorUnidad;
+        }
+
+        public String getProducto() {
+            return producto;
+        }
+
+        public int getCantidad() {
+            return cantidad;
+        }
+
+        public double getPrecioPorUnidad() {
+            return precioPorUnidad;
+        }
+
+        private double precioPorUnidad;
+
+    }
+
+    private static void ejercicio06() {
+
+        var ventas = Arrays.asList(
+                new Venta("ProductoA", 10, 12.5),
+                new Venta("ProductoB", 5, 25),
+                new Venta("ProductoA", 7, 15),
+                new Venta("ProductoC", 20, 4),
+                new Venta("ProductoD", 2, 30));
+
+        var r = ventas.stream()
+                .filter(v -> v.getCantidad() * v.getPrecioPorUnidad() > 100d)
+                .collect(Collectors.groupingBy(v -> v.getProducto(),
+                        Collectors.summingDouble(v -> v.getCantidad() * v.getPrecioPorUnidad())));
+
+        r.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .forEach(e -> System.out.printf("Producto: %s, cantidad: %,.2f %n", e.getKey(), e.getValue()));
     }
 }
