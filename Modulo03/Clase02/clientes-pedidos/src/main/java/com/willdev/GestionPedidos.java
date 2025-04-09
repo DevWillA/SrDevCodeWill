@@ -60,7 +60,7 @@ public class GestionPedidos {
         LOG.debug("Los parametros son: clienteId={}, producto={}",
                 new Object[] { clienteId, producto });
 
-        var cliente = clientes.buscarCliente(clienteId);
+        //var cliente = clientes.buscarCliente(clienteId);
 
         for (Pedidos pedido : this.pedido) {
             if (pedido.getClienteId().equals(clienteId) && pedido.getProducto().equals(producto)) {

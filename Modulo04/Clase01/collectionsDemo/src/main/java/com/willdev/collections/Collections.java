@@ -1,9 +1,8 @@
 package com.willdev.collections;
 
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.willdev.calculadora.Product;
 
@@ -21,10 +20,10 @@ public class Collections {
         var list = List.of("hola", "mundo", "java", "collections");
         System.out.println(list);
 
-        var set = Set.of(1, 2, 3, 4, 5);
+       // var set = Set.of(1, 2, 3, 4, 5);
 
-        var array = new String[] { "Hola", "Mundo", "Java", "Collections" };
-        var arrayAsList = Arrays.asList(array);
+       // var array = new String[] { "Hola", "Mundo", "Java", "Collections" };
+       // var arrayAsList = Arrays.asList(array);
 
         printWord("Hola", "Mundo", "Java", "Collections");
     }
