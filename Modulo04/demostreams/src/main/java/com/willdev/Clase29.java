@@ -24,11 +24,13 @@ public class Clase29 {
                             Collectors.summingInt(data -> Integer.parseInt(data[2]))));
 
             r.forEach((region, total) -> System.out.println("Region: " + region + ", Total: " + total));
+            lineas.close();
         } catch (IOException e) {
 
             System.out.println("Error al leer el archivo: " + e.getMessage());
 
         }
+
 
     }
 
